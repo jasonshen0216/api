@@ -4,12 +4,12 @@
 | - | - | 
 |[Site](#site)| `/api/v3/site`|
 |[Agent](#agents)| `/api/v3/agents`|
+|[Contact](#contact)| `/api/v3/contacts`|
 |[Role](#roles)| `/api/v3/roles`|
 |[Agent Single Sign On](#agent-SSO-Settings)| `/api/v3/agentSignleSignOn`|
 |[Audit Log](#audit-logs)| `/api/v3/auditLogs`|
 |[Canned Message](#canned-Messages)| `/api/v3/cannedMessages`|
 |[Canned Message Category](#canned-Message-Categories)| `/api/v3/cannedMessageCategories`|
-|[Contact](#contact)| `/api/v3/contacts`|
 |[Credit Card Masking](#credit-Card-Masking)| `/api/v3/creditCardMasking`|
 |[Department](#departments)| `/api/v3/departments`|
 |[Ip Restriction](#ip-restriction) | `/api/v3/ipRestriction` |
@@ -175,7 +175,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   - `POST /api/v3/agents` - Create a new agent
   - `PUT /api/v3/agents/{id}` - Update an agent  
   - `DELETE /api/v3/agents/{id}` - Remove an agent
-  - `POST /api/v3/agents/{id}/password` - Admin set an agent's password
+  - `PUT /api/v3/agents/{id}/password` - Admin set an agent's password
   - `PUT /api/v3/agents/{id}/unlock` - unlock the agent
   - `GET /api/v3/agents/{id}/permissions` - Get list of an agent's permissions.
   - `PUT /api/v3/agents/{id}/permissions` - Update permissions for an agent.
@@ -453,7 +453,7 @@ Status: 200 OK
 
 #### Admin sets an agent's password
 
-  `POST /api/v3/agents/{id}/password`
+  `PUT /api/v3/agents/{id}/password`
 
 - Path Parameters
   
@@ -476,7 +476,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x POST  
+     -x PUT  
      -d "{"password":"234567"}"  https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/password
 ```
 
@@ -1060,6 +1060,435 @@ Status: 200 OK
 
 </div>
 </div>
+
+<div>
+
+## Contact
+
+- You need `Manage Contacts` permission to manage contacts.
+  - `GET /api/v3/contacts` - Search contacts
+  - `GET /api/v3/contacts/{id}` - Get a contact by contact id
+  - `PUT /api/v3/contacts/{id}` - Update a contact
+  - `POST /api/v3/contacts` - Create a contact
+  - `DELETE /api/v3/contacts/{id}` - Remove a contact
+  - `POST  /api/v3/contacts/{contactId}/identities` - Add contact identity
+  - `PUT  /api/v3/contacts/{contactId}/identities/{id}` - Update contact identity
+  - `DELETE  /api/v3/contacts/{contactId}/identities/{id}` - Delete contact identity
+
+<div>
+
+### Model
+
+#### Contact Json Format
+
+ Contact is represented as simple flat JSON objects with the following keys:  
+
+| Name | Type | Description |
+| - | - | - |
+| `id` | string | read-only, id of contact |
+| `name` | string | required, the name of the contact |
+| `alias` | string | optional, the alias name of the contact |
+| `identities` | [identity](#identity)[] | optional, identity array of the contact |
+| `description` | string | optional, a small description of the contact |
+| `company` | string | optional, the primary company name which this contact belongs to |
+| `title` | string | optional, the title of the contact|
+| `phoneNumber` | string | optional, telephone number of the contact|
+| `faxNumber` | string | optional, fax number of the contact |
+| `address` | string | optional, the address of the contact  |
+| `city` | string | optional, the city of the contact  |
+| `stateOrProvince` | string | optional, the state or province of the contact |
+| `country` | string | optional, the country of the contact |
+| `postalOrZipCode` | string | optional, the postal or zip code of the contact  |
+| `createdTime` | datetime | optional, the time the contact was created |
+| `tags` | [tag](#tag)[] | optional, tag array of the contact  |
+
+ ### Identity
+| Name | Type | Description | 
+| - | - | - |
+| `id` | string | read-only, the id of identity |
+| `type` | string | required, `emailAddress`, `SSOUserId`, `externalId`, `smsNumber`, `facebookAccount`, `twitterAccount`, `weChatAccount` |
+| `value` | string | required, the value of one identity, should be unique |
+
+ - Note: We currently only allow one for each type.
+
+</div>
+<div>
+ 
+ ### Endpoints
+
+ #### Search contacts
+
+- Max 50 contacts are responded for each request.
+- `GET  /api/v3/contacts`
+
+- Query Parameters
+
+      Optional:
+    - `pageIndex`: integer, default 1
+    - `keywords`: string, search scope includes: name/identity id/identity value/alias 
+
+- Response
+
+    - `contacts`: [Contact](#contact)[]
+    - `total`: integer, total number of contacts.
+    - `previousPage`: string, next page uri, the first page return null.
+    - `nextPage`: string, the last page return null.
+    - `currentPage`: string, current page uri.
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
+     https://hosted.comm100.com/api/v3/contacts?keywords=comm100
+```
+
+  Sample response:
+
+```json
+{
+    "total": 1,
+    "previousPage": "",
+    "nextPage": "",
+    "nextPage": "?keywords=comm100&pageindex=1",
+    "contacts": [
+        {
+            "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
+            "name": "tony",
+            "alias": "test comm100",
+            "identities": [],
+            "description": "test",
+            "company": "comm100",
+            "title": "",
+            "phoneNumber": "",
+            "faxNumber": "-1",
+            "address": "",
+            "city": "",
+            "stateOrProvince": "",
+            "country": "",
+            "postalOrZipCode": "",
+            "createdTime": "2019-05-08T10:21:44.403",
+            "tags": []
+        }
+    ]
+}
+```
+
+#### Get a contact by contact id
+
+`GET  /api/v3/contacts/{id}`
+
+- Path Parameters
+
+  - id: string, id of the contact
+
+- Response
+
+  [Contact](#contact)
+
+
+#### Example
+
+  Sample request:
+
+```bash
+curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
+        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
+        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
+        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
+     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+```
+
+  Sample response:
+
+```json
+{
+    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
+    "name": "tony",
+    "alias": "test comm100",
+    "identities": [],
+    "description": "test",
+    "company": "comm100",
+    "title": "",
+    "phoneNumber": "",
+    "faxNumber": "-1",
+    "address": "",
+    "city": "",
+    "stateOrProvince": "",
+    "country": "",
+    "postalOrZipCode": "",
+    "createdTime": "2019-05-08T10:21:44.403",
+    "tags": []
+}
+```
+
+ #### Create a contact
+
+`POST  /api/v3/contacts`
+
+- Request Parameters 
+
+   [Contact](#contact)
+
+ - Response
+
+   [Contact](#contact)
+
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x POST -H "Content-Type: application/json"  
+     -d "{"name": 'tony',"alias": 'test comm100',"identities": [{"id": 'ABCD053B-97DB-4E2F-9B7F-664CA3A14951', "type": 'emailAddress', "value": 'test@comm100.com'}]}"    
+     https://hosted.comm100.com/api/v3/contacts
+```
+
+Sample response:
+
+```json
+{
+    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
+    "name": "tony",
+    "alias": "test comm100",
+    "identities": [
+      {
+        "id": "ABCD053B-97DB-4E2F-9B7F-664CA3A14951",
+        "type": "emailAddress",
+        "value": "test@comm100.com"
+      }
+    ],
+    "description": "test",
+    "company": "comm100",
+    "title": "",
+    "phoneNumber": "",
+    "faxNumber": "-1",
+    "address": "",
+    "city": "",
+    "stateOrProvince": "",
+    "country": "",
+    "postalOrZipCode": "",
+    "createdTime": "2019-05-08T10:21:44.403",
+    "tags": []
+}
+```
+
+
+ #### Update a contact
+
+`PUT  /api/v3/contacts/{id}`
+
+- Path Parameters
+
+    - id: string, id of the contact
+
+- Request Parameters
+
+  [Contact](#contact)
+
+- Response
+
+  [Contact](#contact)
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x PUT -H "Content-Type: application/json"  
+     -d "{"name": 'jason',"alias": 'my alias'}"    
+     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+```
+
+Sample response:
+
+```json
+{
+    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
+    "name": "jason",
+    "alias": "my alias",
+    "identities": [
+      {
+        "id": "ABCD053B-97DB-4E2F-9B7F-664CA3A14951",
+        "type": "emailAddress",
+        "value": "test@comm100.com"
+      }
+    ],
+    "description": "test",
+    "company": "comm100",
+    "title": "",
+    "phoneNumber": "",
+    "faxNumber": "-1",
+    "address": "",
+    "city": "",
+    "stateOrProvince": "",
+    "country": "",
+    "postalOrZipCode": "",
+    "createdTime": "2019-05-08T10:21:44.403",
+    "tags": []
+}
+```
+
+ #### Delete a contact
+
+ `DELETE  /api/v3/contacts/{id}`
+
+- Path Parameters
+
+    - id: string, id of the contact
+
+- Response
+
+    Status: 200 OK
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+```
+
+Sample response:
+
+```json
+Status: 200 OK
+```
+
+ #### Add identity
+
+`POST  /api/v3/contacts/{contactId}/identities`
+
+- Path Parameters
+
+    - contactId: string, contact id
+
+- Request Parameters
+
+    [Identity](#identity)
+
+- Response
+
+    [Identity](#identity)
+
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x POST -H "Content-Type: application/json"  
+     -d "{"type": 'smsNumber', "value": '123456789'}"    
+     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities
+```
+
+Sample response:
+
+```json
+{
+    "id": "18266526-49F7-4DB3-937A-CE9902E90BA3",
+    "type": "smsNumber",
+    "value": "123456789"
+}
+```
+
+ #### Update identity
+
+`PUT  /api/v3/contacts/{contactId}/identities/{id}`
+
+- Path Parameters
+
+    - contactId: string, contact id
+    - id: string, contact identity id
+
+- Request Parameters
+
+    - value: string, the value of this identity.
+
+- Response
+
+    [Identity](#identity)
+
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x PUT -H "Content-Type: application/json"  
+     -d "{"value": '987654321'}"    
+     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
+```
+
+Sample response:
+
+```json
+{
+    "id": "18266526-49F7-4DB3-937A-CE9902E90BA3",
+    "type": "smsNumber",
+    "value": "987654321"    
+}
+```
+
+ #### Delete identity
+
+ `DELETE  /api/v3/contacts/{contactId}/identities/{id}`
+
+- Path Parameters
+
+    - contactId: string, contact id
+    - id: string, contact identity id
+
+- Response
+
+    Status: 200 OK
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
+```
+
+Sample response:
+
+```json
+Status: 200 OK
+```
+
+</div>
+</div>
+
 <div>
 
 ## Roles
@@ -1768,7 +2197,7 @@ curl -H "Authorization: Bearer XCUScuZK21qDa2Tqyo0HF1rvoHC6OTIKZRkj-GgKUcsVyaXyh
   | `name` | string | required, name of the canned message. |
   | `message` | string | required, content of the canned message. |
   | `shortcuts` | string | optional, shortcuts of the canned message. |
-  | `categoryId` | integer | required, id of the category of the canned message, default is `0`. |
+  | `categoryId` | string | required, id of the category of the canned message. |
   | `isPrivate` | boolean | required, whether the canned message is private or not, default is `false`. |
   | `channelType` | string | required, type the canned message, we now have `default` or `email`. |
   | `emailHtmlMessage` | string | optional, email html message of the canned message. |
@@ -1812,7 +2241,7 @@ Sample response:
         "isPrivate": false,
         "name": "test Canned Message name",
         "message": "bye bye",
-        "categoryId": 0,
+        "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
         "shortCuts": "bye",
         "channelType": "default",
         "emailHtmlMessage": "",
@@ -1854,7 +2283,7 @@ Sample response:
     "isPrivate": false,
     "name": "test Canned Message name",
     "message": "bye bye",
-    "categoryId": 0,
+    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
     "shortCuts": "bye",
     "channelType": "default",
     "emailHtmlMessage": "",
@@ -1896,7 +2325,7 @@ Sample response:
     "isPrivate": false,
     "name": "test",
     "message": "testmessage",
-    "categoryId": 0,
+    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
     "shortCuts": "",
     "channelType": "default",
     "emailHtmlMessage": "",
@@ -1942,7 +2371,7 @@ Sample response:
     "isPrivate": false,
     "name": "testupdate",
     "message": "testmessageupdate",
-    "categoryId": 0,
+    "categoryId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
     "shortCuts": "",
     "channelType": "email",
     "emailHtmlMessage": "test email html message",
@@ -1977,7 +2406,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
@@ -2005,7 +2434,7 @@ Response: Status: 200 OK
   | - | - | - |
   | `id` | string | read-only, id of the canned message category. |
   | `name` | string | required, name of the canned message category. |
-  | `parentId` | integer | required, id of the parent category of the canned message category. |
+  | `parentId` | string | required, id of the parent category of the canned message category. |
   | `isPrivate` | boolean | required, whether the canned message category is private or not. |
 
 </div>
@@ -2045,7 +2474,7 @@ Sample response:
         "id": "7F79B926-1E8C-438B-8F07-53D2914149A6",
         "isPrivate": false,
         "name": "puddddtresult",
-        "parentId": 0
+        "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
     },
     ...
 ]
@@ -2082,7 +2511,7 @@ Sample response:
     "id": "7F79B926-1E8C-438B-8F07-53D2914149A6",
     "isPrivate": false,
     "name": "puddddtresultgggg",
-    "parentId": 1
+    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
 }
 ```
 
@@ -2119,7 +2548,7 @@ Sample response:
     "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
     "isPrivate": false,
     "name": "justfortest",
-    "parentId": 0
+    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
 }
 ```
 
@@ -2160,7 +2589,7 @@ Sample response:
     "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
     "isPrivate": false,
     "name": "justfortestupdate",
-    "parentId": 0
+    "parentId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42"
 }
 ```
 
@@ -2191,439 +2620,12 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
 </div>
 
-<div>
-
-## Contact
-
-- You need `Manage Contacts` permission to manage contacts.
-  - `GET /api/v3/contacts` - Search contacts
-  - `GET /api/v3/contacts/{id}` - Get a contact by contact id
-  - `PUT /api/v3/contacts/{id}` - Update a contact
-  - `POST /api/v3/contacts` - Create a contact
-  - `DELETE /api/v3/contacts/{id}` - Remove a contact
-  - `POST  /api/v3/contacts/{contactId}/identities` - Add contact identity
-  - `PUT  /api/v3/contacts/{contactId}/identities/{id}` - Update contact identity
-  - `DELETE  /api/v3/contacts/{contactId}/identities/{id}` - Delete contact identity
-
-<div>
-
-### Model
-
-#### Contact Json Format
-
- Contact is represented as simple flat JSON objects with the following keys:  
-
-| Name | Type | Description |
-| - | - | - |
-| `id` | string | read-only, id of contact |
-| `name` | string | required, the name of the contact |
-| `alias` | string | optional, the alias name of the contact |
-| `identities` | [identity](#identity)[] | optional, identity array of the contact |
-| `description` | string | optional, a small description of the contact |
-| `company` | string | optional, the primary company name which this contact belongs to |
-| `title` | string | optional, the title of the contact|
-| `phoneNumber` | string | optional, telephone number of the contact|
-| `faxNumber` | string | optional, fax number of the contact |
-| `address` | string | optional, the address of the contact  |
-| `city` | string | optional, the city of the contact  |
-| `stateOrProvince` | string | optional, the state or province of the contact |
-| `country` | string | optional, the country of the contact |
-| `postalOrZipCode` | string | optional, the postal or zip code of the contact  |
-| `createdTime` | datetime | optional, the time the contact was created |
-| `tags` | [tag](#tag)[] | optional, tag array of the contact  |
-
- ### Identity
-| Name | Type | Description | 
-| - | - | - |
-| `id` | string | read-only, the id of identity |
-| `type` | string | required, `emailAddress`, `SSOUserId`, `externalId`, `smsNumber`, `facebookAccount`, `twitterAccount`, `weChatAccount` |
-| `value` | string | required, the value of one identity, should be unique |
-
- - Note: We currently only allow one for each type.
-
-</div>
-<div>
- 
- ### Endpoints
-
- #### Search contacts
-
-- Max 50 contacts are responded for each request.
-- `GET  /api/v3/contacts`
-
-- Query Parameters
-
-      Optional:
-    - `pageIndex`: integer, default 1
-    - `keywords`: string, search scope includes: name/identity value/alias 
-
-- Response
-
-    - `contacts`: [Contact](#contact)[]
-    - `total`: integer, total number of contacts.
-    - `previousPage`: string, next page uri, the first page return null.
-    - `nextPage`: string, the last page return null.
-    - `currentPage`: string, current page uri.
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/contacts?keywords=comm100
-```
-
-  Sample response:
-
-```json
-{
-    "total": 1,
-    "previousPage": "",
-    "nextPage": "",
-    "nextPage": "?keywords=comm100&pageindex=1",
-    "contacts": [
-        {
-            "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-            "name": "tony",
-            "alias": "test comm100",
-            "identities": [],
-            "description": "test",
-            "company": "comm100",
-            "title": "",
-            "phoneNumber": "",
-            "faxNumber": "-1",
-            "address": "",
-            "city": "",
-            "stateOrProvince": "",
-            "country": "",
-            "postalOrZipCode": "",
-            "createdTime": "2019-05-08T10:21:44.403",
-            "tags": []
-        }
-    ]
-}
-```
-
-#### Get a contact by contact id
-
-`GET  /api/v3/contacts/{id}`
-
-- Path Parameters
-
-  - id: string, id of the contact
-
-- Response
-
-  [Contact](#contact)
-
-
-#### Example
-
-  Sample request:
-
-```bash
-curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_IGHMGHqhRXXd  
-        gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
-        SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
-        j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
-```
-
-  Sample response:
-
-```json
-{
-    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-    "name": "tony",
-    "alias": "test comm100",
-    "identities": [],
-    "description": "test",
-    "company": "comm100",
-    "title": "",
-    "phoneNumber": "",
-    "faxNumber": "-1",
-    "address": "",
-    "city": "",
-    "stateOrProvince": "",
-    "country": "",
-    "postalOrZipCode": "",
-    "createdTime": "2019-05-08T10:21:44.403",
-    "tags": []
-}
-```
-
- #### Create a contact
-
-`POST  /api/v3/contacts`
-
-- Request Parameters 
-
-   [Contact](#contact)
-
- - Response
-
-   [Contact](#contact)
-
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"name": 'tony',"alias": 'test comm100',"identities": [{"id": 'ABCD053B-97DB-4E2F-9B7F-664CA3A14951', "type": 'emailAddress', "value": 'test@comm100.com'}]}"    
-     https://hosted.comm100.com/api/v3/contacts
-```
-
-Sample response:
-
-```json
-{
-    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-    "name": "tony",
-    "alias": "test comm100",
-    "identities": [
-      {
-        "id": "ABCD053B-97DB-4E2F-9B7F-664CA3A14951",
-        "type": "emailAddress",
-        "value": "test@comm100.com"
-      }
-    ],
-    "description": "test",
-    "company": "comm100",
-    "title": "",
-    "phoneNumber": "",
-    "faxNumber": "-1",
-    "address": "",
-    "city": "",
-    "stateOrProvince": "",
-    "country": "",
-    "postalOrZipCode": "",
-    "createdTime": "2019-05-08T10:21:44.403",
-    "tags": []
-}
-```
-
-
- #### Update a contact
-
-`PUT  /api/v3/contacts/{id}`
-
-- Path Parameters
-
-    - id: string, id of the contact
-
-- Request Parameters
-
-  [Contact](#contact)
-
-- Response
-
-  [Contact](#contact)
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"name": 'jason',"alias": 'my alias'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
-```
-
-Sample response:
-
-```json
-{
-    "id": "87EDE98E-9B70-42DC-90A8-1C0FF38775B0",
-    "name": "jason",
-    "alias": "my alias",
-    "identities": [
-      {
-        "id": "ABCD053B-97DB-4E2F-9B7F-664CA3A14951",
-        "type": "emailAddress",
-        "value": "test@comm100.com"
-      }
-    ],
-    "description": "test",
-    "company": "comm100",
-    "title": "",
-    "phoneNumber": "",
-    "faxNumber": "-1",
-    "address": "",
-    "city": "",
-    "stateOrProvince": "",
-    "country": "",
-    "postalOrZipCode": "",
-    "createdTime": "2019-05-08T10:21:44.403",
-    "tags": []
-}
-```
-
- #### Delete a contact
-
- `DELETE  /api/v3/contacts/{id}`
-
-- Path Parameters
-
-    - id: string, id of the contact
-
-- Response
-
-    Status: 200 OK
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
-```
-
-Sample response:
-
-```json
-Response: Status: 200 OK
-```
-
- #### Add identity
-
-`POST  /api/v3/contacts/{contactId}/identities`
-
-- Path Parameters
-
-    - contactId: string, contact id
-
-- Request Parameters
-
-    [Identity](#identity)
-
-- Response
-
-    [Identity](#identity)
-
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x POST -H "Content-Type: application/json"  
-     -d "{"type": 'smsNumber', "value": '123456789'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities
-```
-
-Sample response:
-
-```json
-{
-    "id": "18266526-49F7-4DB3-937A-CE9902E90BA3",
-    "type": "smsNumber",
-    "value": "123456789"
-}
-```
-
- #### Update identity
-
-`PUT  /api/v3/contacts/{contactId}/identities/{id}`
-
-- Path Parameters
-
-    - contactId: string, contact id
-    - id: string, contact identity id
-
-- Request Parameters
-
-    - value: string, the value of this identity.
-
-- Response
-
-    [Identity](#identity)
-
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x PUT -H "Content-Type: application/json"  
-     -d "{"value": '987654321'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
-```
-
-Sample response:
-
-```json
-{
-    "id": "18266526-49F7-4DB3-937A-CE9902E90BA3",
-    "type": "smsNumber",
-    "value": "987654321"    
-}
-```
-
- #### Delete identity
-
- `DELETE  /api/v3/contacts/{contactId}/identities/{id}`
-
-- Path Parameters
-
-    - contactId: string, contact id
-    - id: string, contact identity id
-
-- Response
-
-    Status: 200 OK
-
-#### Example
-
-Sample request:
-
-```shell
-curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
-    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
-    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
-    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
-```
-
-Sample response:
-
-```json
-Response: Status: 200 OK
-```
-
-</div>
-</div>
 
 <div>
 
@@ -2941,7 +2943,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
@@ -3193,7 +3195,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
@@ -3510,7 +3512,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
@@ -3683,7 +3685,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
 Sample response:
 
 ```json
-Response: Status: 200 OK
+Status: 200 OK
 ```
 
 </div>
