@@ -3410,7 +3410,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 - Response
 
-  [tag object](#Tag-Json-Format)
+  [Tag](#Tag-Json-Format)
 
 #### Example
 
@@ -3439,11 +3439,11 @@ Sample response:
 
 - Request Parameters
 
-   [tag object](#Tag-Json-Format)
+   [Tag](#Tag-Json-Format)
 
  - Response
 
-   [tag object](#Tag-Json-Format)
+   [Tag](#Tag-Json-Format)
 
 
  #### Update a tag
@@ -3456,11 +3456,11 @@ Sample response:
 
 - Request Parameters
 
-  [tag object](#Tag-Json-Format)
+  [Tag](#Tag-Json-Format)
 
 - Response
 
-  [tag object](#Tag-Json-Format)
+  [Tag](#Tag-Json-Format)
 
 #### Example
 
