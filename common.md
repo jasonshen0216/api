@@ -23,8 +23,8 @@
 
   You need `Manage Site Profile` permission to manage site.
   
-- `GET /api/v3/site/profile` -Get profile of a single site
-- `PUT /api/v3/site/profile` -Update profile of a site
+- `GET /api/v3/site` -Get profile of a single site
+- `PUT /api/v3/site` -Update profile of a site
 
 <div>
 
@@ -63,7 +63,7 @@
 
 #### Get the profile of a single site
 
-  `GET /api/v3/site/profile`
+  `GET /api/v3/site`
 
 - Parameters
 
@@ -82,7 +82,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"
-     https://hosted.comm100.com/api/v3/site/profile
+     https://hosted.comm100.com/api/v3/site
 ```
 
   Sample response:
@@ -113,7 +113,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update the profile of a site  
 
-  `PUT /api/v3/site/profile`
+  `PUT /api/v3/site`
 
 - Request Parameters
 
@@ -134,7 +134,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"sitename": 'sitename',"firstName": 'test',"lastName": 'comm100',"website": 'www.comm100.com',"company": 'comm100',"timezone": '71'}"    
-     https://hosted.comm100.com/api/v3/site/profile
+     https://hosted.comm100.com/api/v3/site
 ```
 
   Sample response:
@@ -210,7 +210,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   | `isAdmin` | boolean | optional, whether the agent is an administrator or not.
   | `isActive` | boolean | optional, whether the agent is active or not.
   | `isLocked` | boolean | optional, whether the agent is locked or not.
-  | `availableChannels` | array | optional, the list of available channels of the agent.
+  | `ldapUserName` | string | optional, ldap name of the agent.
+  | `availableChannelIds` | array | optional, the list of available channel id of the agent.
 
 </div>
 <div>
@@ -267,7 +268,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
             "isAdmin": true,
             "isActive": true,
             "isLocked": false,
-            "availableChannels": []
+            "ldapUserName": "",
+            "availableChannelIds": []
         }
     ]
 }
@@ -315,7 +317,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "availableChannels": []
+    "ldapUserName": "",
+    "availableChannelIds": []
 }
 ```
 
@@ -364,7 +367,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": false,
     "isActive": true,
     "isLocked": false,
-    "availableChannels": []
+    "ldapUserName": "",
+    "availableChannelIds": []
 }
 ```
 
@@ -417,7 +421,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "availableChannels": []
+    "ldapUserName": "",
+    "availableChannelIds": []
 }
 ```
 
@@ -972,7 +977,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "availableChannels": []
+    "ldapUserName": "",
+    "availableChannelIds": []
 }
 ```
 
@@ -1021,7 +1027,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "isAdmin": true,
     "isActive": true,
     "isLocked": false,
-    "availableChannels": []
+    "ldapUserName": "",
+    "availableChannelIds": []
 }
 ```
 
@@ -2746,7 +2753,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
   | `description` | string | optional, description of the department. |
   | `agents` | array | optional, an array of agent in the department. |
   | `roles` | array | optional, an array of role in the department. |
-  | `availableChannels` | array | optional, the list of available channels of the department.|
+  | `availableChannelIds` | array | optional, the list of available channel id of the department.|
 
 </div>
 <div>
@@ -2789,7 +2796,7 @@ Sample response:
             "BBEBE689-0993-461A-A820-C6D30FD3C66F"
         ],
         "roles": [ ],
-        "availableChannels": []
+        "availableChannelIds": []
     },
     ...
 ]
@@ -2830,7 +2837,7 @@ Sample response:
         "BBEBE689-0993-461A-A820-C6D30FD3C66F"
     ],
     "roles": [ ],
-    "availableChannels": []
+    "availableChannelIds": []
 }
 ```
 
@@ -2869,7 +2876,7 @@ Sample response:
     "description": "",
     "agents": [ ],
     "roles": [ ],
-    "availableChannels": []
+    "availableChannelIds": []
 }
 ```
 
@@ -2912,7 +2919,7 @@ Sample response:
     "description": "",
     "agents": [ ],
     "roles": [ ],
-    "availableChannels": []
+    "availableChannelIds": []
 }
 ```
 
@@ -3537,7 +3544,7 @@ Webhook is represented as simple flat JSON objects with the following keys:
   | Name | Type | Description |
   | - | - | - |
   |`id`| string | read-only, id of the webhook. |
-  |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chat.FileUploaded`, `offlineMessage.FileUploaded`, `anytimeConversation.FileUploaded`. |
+  |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `anytimeConversationFileUploaded`. |
   |`targetUrl`| string | required, target url of the webhook. |
 
 </div>
