@@ -15,7 +15,7 @@
 |[Ip Restriction](#ip-restriction) | `/api/v3/ipRestriction` |
 |[Password Policy](#password-Policy)| `/api/v3/passwordPolicy`|
 |[Tag](#tag)| `/api/v3/tags`|
-|[Webhook](#webhook)| `/api/v3/webhooks`|
+|[Webhook](#webhooks)| `/api/v3/webhooks`|
 
 <div>
 
