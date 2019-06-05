@@ -3546,6 +3546,7 @@ Webhook is represented as simple flat JSON objects with the following keys:
   |`id`| string | read-only, id of the webhook. |
   |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `anytimeConversationFileUploaded`. |
   |`targetUrl`| string | required, target url of the webhook. |
+  |`version`| string | required, version of the webhook. |
 
 </div>
 <div>
@@ -3583,7 +3584,8 @@ Sample response:
     {
         "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
         "event": "chatWrappedUp",
-        "targetUrl": "http://www.aa.com"
+        "targetUrl": "http://www.aa.com",
+        "version": "3"
     },
     ...
 ]
@@ -3621,7 +3623,8 @@ Sample response:
 {
     "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
     "event": "chatWrappedUp",
-    "targetUrl": "http://www.baidu.com"
+    "targetUrl": "http://www.baidu.com",
+    "version": "3"
 }
 ```
 
@@ -3661,7 +3664,8 @@ Sample response:
 {
     "id": "36E4A18F-3AE7-4192-BCF4-CB5CA6320908",
     "event": "chatWrappedUp",
-    "targetUrl": "http://www.google.com"
+    "targetUrl": "http://www.google.com",
+    "version": "3"
 }
 ```
 
