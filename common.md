@@ -3546,7 +3546,7 @@ Webhook is represented as simple flat JSON objects with the following keys:
   |`id`| string | read-only, id of the webhook. |
   |`event`| string | required, event of webhook, including `offlineMessageSubmitted`, `operatorEventNotification`, `chatStarted`, `chatEnded`, `chatWrappedUp`, `chatRequested` and `chatTransferred`, `chatFileUploaded`, `offlineMessageFileUploaded`, `anytimeConversationFileUploaded`. |
   |`targetUrl`| string | required, target url of the webhook. |
-  |`version`| string | required, version of the webhook. |
+  |`version`| string | read-only, version of the webhook. |
 
 </div>
 <div>
