@@ -10,6 +10,7 @@
 |[Audit Log](#audit-logs)| `/api/v3/auditLogs`|
 |[Canned Message](#canned-Messages)| `/api/v3/cannedMessages`|
 |[Canned Message Category](#canned-Message-Categories)| `/api/v3/cannedMessageCategories`|
+|[Canned Message Use Record](#canned-Message-Use-Records)| `/api/v3/CannedmessageUseRecords`|
 |[Credit Card Masking](#credit-Card-Masking)| `/api/v3/creditCardMasking`|
 |[Department](#departments)| `/api/v3/departments`|
 |[Ip Restriction](#ip-restriction) | `/api/v3/ipRestriction` |
@@ -2633,6 +2634,76 @@ Status: 200 OK
 </div>
 </div>
 
+<div>
+
+## Canned Message Use Record
+
+- `POST /api/v3/cannedMessageUseRecords` -create a new canned Message Use Record
+
+<div>
+
+### Model
+
+#### Canned Message Use Record JSON Format
+
+  Canned Message Use Record is represented as simple flat JSON objects with the following keys:  
+
+  | Name | Type | Description |
+  | - | - | - |
+  | `siteId` | int | required, site id of the canned message use record. |
+  | `conversationId` | string | required, conversation id of the canned message use record. |
+  | `conversationType` | string | required, conversation type the canned message use record, we now have `anytime` or `realtime`. |
+  | `agentId` | string | required, id of the agent who added the canned message use record. |
+  | `cannedMessageId` | string | required, the used canned message id. |
+  | `time` | string | readonly, the time of this canned message use record. |
+
+</div>
+<div>
+
+### Endpoint
+
+#### Create a new canned message
+
+  `POST /api/v3/cannedMessageUseRecords`
+
+- Request Parameters:
+
+    [Canned Message Use Record](#canned-message-use-record-json-format)
+
+- Response:
+
+    [Canned Message Use Record](#canned-message-use-record-json-format)
+
+#### Example
+
+Sample request:
+
+```shell
+curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9S7ZLHrDzOk  
+    -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
+    fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
+    UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
+     -x POST -H "Content-Type: application/json"  
+     -d "{"siteId": 10000,"conversationId": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42',"conversationType": 'anytime',"agentId": '909F7DCE-778E-4FA6-8B1F-4B529023747B',"cannedMessageId": '7960F944-D510-45C9-A766-836337243487'}"   
+     https://hosted.comm100.com/api/v3/cannedMessageUseRecords
+```
+
+Sample response:
+
+```json
+{
+    "siteId": 10000,
+    "conversationId": "4ACE64E9-615C-4036-B8EF-07D3B8AF7F42",
+    "conversationType": "anytime",
+    "agentId": "909F7DCE-778E-4FA6-8B1F-4B529023747B",
+    "cannedMessageId": "7960F944-D510-45C9-A766-836337243487",
+    "time": "2019-08-08T10:21:44.403"
+}
+```
+
+
+</div>
+</div>
 
 <div>
 
