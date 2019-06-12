@@ -2636,7 +2636,7 @@ Status: 200 OK
 
 <div>
 
-## Canned Message Use Record
+## Canned Message Use Records
 
 - `POST /api/v3/cannedMessageUseRecords` -create a new canned Message Use Record
 
