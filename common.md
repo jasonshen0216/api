@@ -1,22 +1,22 @@
-# Common
+# Global
 
 | Object | Path |
 | - | - | 
-|[Site](#site)| `/api/v3/site`|
-|[Agent](#agents)| `/api/v3/agents`|
-|[Contact](#contact)| `/api/v3/contacts`|
-|[Role](#roles)| `/api/v3/roles`|
-|[Agent Single Sign On](#agent-SSO-Settings)| `/api/v3/agentSignleSignOn`|
-|[Audit Log](#audit-logs)| `/api/v3/auditLogs`|
-|[Canned Message](#canned-Messages)| `/api/v3/cannedMessages`|
-|[Canned Message Category](#canned-Message-Categories)| `/api/v3/cannedMessageCategories`|
-|[Canned Message Use Record](#canned-Message-Use-Records)| `/api/v3/CannedmessageUseRecords`|
-|[Credit Card Masking](#credit-Card-Masking)| `/api/v3/creditCardMasking`|
-|[Department](#departments)| `/api/v3/departments`|
-|[Ip Restriction](#ip-restriction) | `/api/v3/ipRestriction` |
-|[Password Policy](#password-Policy)| `/api/v3/passwordPolicy`|
-|[Tag](#tag)| `/api/v3/tags`|
-|[Webhook](#webhooks)| `/api/v3/webhooks`|
+|[Site](#site)| `/api/v3/global/site`|
+|[Agent](#agents)| `/api/v3/global/agents`|
+|[Contact](#contact)| `/api/v3/global/contacts`|
+|[Role](#roles)| `/api/v3/global/roles`|
+|[Agent Single Sign On](#agent-SSO-Settings)| `/api/v3/global/agentSignleSignOn`|
+|[Audit Log](#audit-logs)| `/api/v3/global/auditLogs`|
+|[Canned Message](#canned-Messages)| `/api/v3/global/cannedMessages`|
+|[Canned Message Category](#canned-Message-Categories)| `/api/v3/global/cannedMessageCategories`|
+|[Canned Message Use Record](#canned-Message-Use-Records)| `/api/v3/global/CannedmessageUseRecords`|
+|[Credit Card Masking](#credit-Card-Masking)| `/api/v3/global/creditCardMasking`|
+|[Department](#departments)| `/api/v3/global/departments`|
+|[Ip Restriction](#ip-restriction) | `/api/v3/global/ipRestriction` |
+|[Password Policy](#password-Policy)| `/api/v3/global/passwordPolicy`|
+|[Tag](#tag)| `/api/v3/global/tags`|
+|[Webhook](#webhooks)| `/api/v3/global/webhooks`|
 
 <div>
 
@@ -24,8 +24,8 @@
 
   You need `Manage Site Profile` permission to manage site.
   
-- `GET /api/v3/site` -Get profile of a single site
-- `PUT /api/v3/site` -Update profile of a site
+- `GET /api/v3/global/site` -Get profile of a single site
+- `PUT /api/v3/global/site` -Update profile of a site
 
 <div>
 
@@ -64,7 +64,7 @@
 
 #### Get the profile of a single site
 
-  `GET /api/v3/site`
+  `GET /api/v3/global/site`
 
 - Parameters
 
@@ -83,7 +83,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"
-     https://hosted.comm100.com/api/v3/site
+     https://hosted.comm100.com/api/v3/global/site
 ```
 
   Sample response:
@@ -114,7 +114,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update the profile of a site  
 
-  `PUT /api/v3/site`
+  `PUT /api/v3/global/site`
 
 - Request Parameters
 
@@ -135,7 +135,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"sitename": 'sitename',"firstName": 'test',"lastName": 'comm100',"website": 'www.comm100.com',"company": 'comm100',"timezone": '71'}"    
-     https://hosted.comm100.com/api/v3/site
+     https://hosted.comm100.com/api/v3/global/site
 ```
 
   Sample response:
@@ -171,21 +171,21 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Agents
 
 - You need `Manage Agent & Agent Roles` permission to manage agents.
-  - `GET /api/v3/agents` - Get a list of agents
-  - `GET /api/v3/agents/{id}` - Get a single agent
-  - `POST /api/v3/agents` - Create a new agent
-  - `PUT /api/v3/agents/{id}` - Update an agent  
-  - `DELETE /api/v3/agents/{id}` - Remove an agent
-  - `PUT /api/v3/agents/{id}/password` - Admin set an agent's password
-  - `PUT /api/v3/agents/{id}/unlock` - unlock the agent
-  - `GET /api/v3/agents/{id}/permissions` - Get list of an agent's permissions.
-  - `PUT /api/v3/agents/{id}/permissions` - Update permissions for an agent.
-  - `GET /api/v3/agents/{id}/effectivePermissions` -Get a list of agent's effective permissions, including the permissions of the agent and the permissions of the roles which the agent belongs to.
+  - `GET /api/v3/global/agents` - Get a list of agents
+  - `GET /api/v3/global/agents/{id}` - Get a single agent
+  - `POST /api/v3/global/agents` - Create a new agent
+  - `PUT /api/v3/global/agents/{id}` - Update an agent  
+  - `DELETE /api/v3/global/agents/{id}` - Remove an agent
+  - `PUT /api/v3/global/agents/{id}/password` - Admin set an agent's password
+  - `PUT /api/v3/global/agents/{id}/unlock` - unlock the agent
+  - `GET /api/v3/global/agents/{id}/permissions` - Get list of an agent's permissions.
+  - `PUT /api/v3/global/agents/{id}/permissions` - Update permissions for an agent.
+  - `GET /api/v3/global/agents/{id}/effectivePermissions` -Get a list of agent's effective permissions, including the permissions of the agent and the permissions of the roles which the agent belongs to.
 
 - You can manage your own profile
-  - `GET /api/v3/agents/me` - Get current agent
-  - `PUT /api/v3/agents/me` - Update own profile
-  - `PUT /api/v3/agents/me/password` - Change own password
+  - `GET /api/v3/global/agents/me` - Get current agent
+  - `PUT /api/v3/global/agents/me` - Update own profile
+  - `PUT /api/v3/global/agents/me/password` - Change own password
 
 <div>
 
@@ -221,7 +221,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a list of agents
 
-  `GET /api/v3/agents`
+  `GET /api/v3/global/agents`
 
 - Query Parameters
 
@@ -243,7 +243,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agents
+     https://hosted.comm100.com/api/v3/global/agents
 ```
 
   Sample response:
@@ -278,7 +278,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a single agent
 
-  `GET /api/v3/agents/{id}`
+  `GET /api/v3/global/agents/{id}`
 
 - Path Parameters
   
@@ -297,7 +297,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agents/9F4709DB-C391-4896-94BA-3A17BE12D9E2
+     https://hosted.comm100.com/api/v3/global/agents/9F4709DB-C391-4896-94BA-3A17BE12D9E2
 ```
 
   Sample response:
@@ -325,7 +325,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Create a new agent
   
-  `POST /api/v3/agents`
+  `POST /api/v3/global/agents`
 
 - Request Parameters
 
@@ -347,7 +347,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
      -x POST -H "Content-Type: application/json"  
      -d "{"email": 'test@test.com',"displayname": 'testname',"firstname": 'first', 
      "lastname": 'lastname',"title": 'title',"password": '123456',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/agents
+     https://hosted.comm100.com/api/v3/global/agents
 ```
 
   Sample response:
@@ -375,7 +375,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update an agent
 
-  `PUT /api/v3/agents/{id}`
+  `PUT /api/v3/global/agents/{id}`
 
 - Path Parameters
   
@@ -401,7 +401,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       -x PUT -H "Content-Type: application/json"  
       -d "{"email": 'test1@test.com',"displayname": 'testname',"firstname": 'first',"lastname": 'lastname', 
      "title": 'title',"password": '123456',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
+     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
 ```
 
   Sample response:
@@ -429,7 +429,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Remove an agent
 
-  `DELETE /api/v3/agents/{id}`
+  `DELETE /api/v3/global/agents/{id}`
 
 - Path Parameters
   
@@ -448,7 +448,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
+     -x DELETE https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD
 ```
 
   Sample response:
@@ -459,7 +459,7 @@ Status: 200 OK
 
 #### Admin sets an agent's password
 
-  `PUT /api/v3/agents/{id}/password`
+  `PUT /api/v3/global/agents/{id}/password`
 
 - Path Parameters
   
@@ -483,7 +483,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT  
-     -d "{"password":"234567"}"  https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/password
+     -d "{"password":"234567"}"  https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/password
 ```
 
   Sample response:
@@ -494,7 +494,7 @@ Status: 200 OK
 
 #### Unlock an Agent
 
-  `PUT /api/v3/agents/{id}/unlock`
+  `PUT /api/v3/global/agents/{id}/unlock`
 
 - Path Parameters
   
@@ -514,7 +514,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT
-     -d ""  https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/unlock
+     -d ""  https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/unlock
 ```
 
   Sample response:
@@ -525,7 +525,7 @@ Status: 200 OK
 
 #### Get an agent's permissions
 
-  `GET /api/v3/agents/{id}/permissions`
+  `GET /api/v3/global/agents/{id}/permissions`
 
 - Path Parameters
   
@@ -625,7 +625,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
+     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
 ```
 
   Sample response:
@@ -713,7 +713,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update Permissions for an Agent
 
-  `PUT /api/v3/agents/{id}/permissions`
+  `PUT /api/v3/global/agents/{id}/permissions`
 
 - Path Parameters
   
@@ -743,7 +743,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
       "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
       "manageCustomMetrics": false,"viewAllInSiteVisitors": true,"viewAllAgents": true}}"   
-     https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
+     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/permissions
 ```
 
   Sample response:
@@ -831,7 +831,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a List of an Agent's Eeffective Permissions
 
-  `GET /api/v3/agents/{id}/effectivePermissions`
+  `GET /api/v3/global/agents/{id}/effectivePermissions`
 
 - Path Parameters
   
@@ -850,7 +850,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/effectivepermissions
+     https://hosted.comm100.com/api/v3/global/agents/2B356016-2B44-49C0-B4E6-05902E55DAFD/effectivepermissions
 ```
 
   Sample response:
@@ -938,7 +938,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get current Agent
 
-  `GET /api/v3/agents/me`
+  `GET /api/v3/global/agents/me`
 
 - Parameters
 
@@ -957,7 +957,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agents/me
+     https://hosted.comm100.com/api/v3/global/agents/me
 ```
 
   Sample response:
@@ -985,7 +985,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update Your Own Profile
 
-  `PUT /api/v3/agents/me`
+  `PUT /api/v3/global/agents/me`
 
 - Request Parameters
 
@@ -1007,7 +1007,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
      -x PUT -H "Content-Type: application/json"  
      -d "{"email": 'test4@test.com',"displayname": 'testname',"firstname": 'first',
      "lastname": 'lastname',"title": 'title',"timezone": '31',"mobilephone": '12345678911'}"
-     https://hosted.comm100.com/api/v3/agents/me
+     https://hosted.comm100.com/api/v3/global/agents/me
 ```
 
   Sample response:
@@ -1035,7 +1035,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Change Your Own password
 
-  `PUT /api/v3/agents/me/password`
+  `PUT /api/v3/global/agents/me/password`
 
 - Request Parameters
 
@@ -1057,7 +1057,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"currentpassword": '123456', "newpassword": '111111'}"
-     https://hosted.comm100.com/api/v3/agents/me/password
+     https://hosted.comm100.com/api/v3/global/agents/me/password
 ```
 
   Sample response:
@@ -1074,14 +1074,14 @@ Status: 200 OK
 ## Contact
 
 - You need `Manage Contacts` permission to manage contacts.
-  - `GET /api/v3/contacts` - Search contacts
-  - `GET /api/v3/contacts/{id}` - Get a contact by contact id
-  - `PUT /api/v3/contacts/{id}` - Update a contact
-  - `POST /api/v3/contacts` - Create a contact
-  - `DELETE /api/v3/contacts/{id}` - Remove a contact
-  - `POST  /api/v3/contacts/{contactId}/identities` - Add contact identity
-  - `PUT  /api/v3/contacts/{contactId}/identities/{id}` - Update contact identity
-  - `DELETE  /api/v3/contacts/{contactId}/identities/{id}` - Delete contact identity
+  - `GET /api/v3/global/contacts` - Search contacts
+  - `GET /api/v3/global/contacts/{id}` - Get a contact by contact id
+  - `PUT /api/v3/global/contacts/{id}` - Update a contact
+  - `POST /api/v3/global/contacts` - Create a contact
+  - `DELETE /api/v3/global/contacts/{id}` - Remove a contact
+  - `POST  /api/v3/global/contacts/{contactId}/identities` - Add contact identity
+  - `PUT  /api/v3/global/contacts/{contactId}/identities/{id}` - Update contact identity
+  - `DELETE  /api/v3/global/contacts/{contactId}/identities/{id}` - Delete contact identity
 
 <div>
 
@@ -1127,7 +1127,7 @@ Status: 200 OK
  #### Search contacts
 
 - Max 50 contacts are responded for each request.
-- `GET  /api/v3/contacts`
+- `GET  /api/v3/global/contacts`
 
 - Query Parameters
 
@@ -1152,7 +1152,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/contacts?keywords=comm100
+     https://hosted.comm100.com/api/v3/global/contacts?keywords=comm100
 ```
 
   Sample response:
@@ -1188,7 +1188,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a contact by contact id
 
-`GET  /api/v3/contacts/{id}`
+`GET  /api/v3/global/contacts/{id}`
 
 - Path Parameters
 
@@ -1208,7 +1208,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
   Sample response:
@@ -1236,7 +1236,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
  #### Create a contact
 
-`POST  /api/v3/contacts`
+`POST  /api/v3/global/contacts`
 
 - Request Parameters 
 
@@ -1258,7 +1258,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"name": 'tony',"alias": 'test comm100',"identities": [{"id": 'ABCD053B-97DB-4E2F-9B7F-664CA3A14951', "type": 'emailAddress', "value": 'test@comm100.com'}]}"    
-     https://hosted.comm100.com/api/v3/contacts
+     https://hosted.comm100.com/api/v3/global/contacts
 ```
 
 Sample response:
@@ -1293,7 +1293,7 @@ Sample response:
 
  #### Update a contact
 
-`PUT  /api/v3/contacts/{id}`
+`PUT  /api/v3/global/contacts/{id}`
 
 - Path Parameters
 
@@ -1318,7 +1318,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"name": 'jason',"alias": 'my alias'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
 Sample response:
@@ -1352,7 +1352,7 @@ Sample response:
 
  #### Delete a contact
 
- `DELETE  /api/v3/contacts/{id}`
+ `DELETE  /api/v3/global/contacts/{id}`
 
 - Path Parameters
 
@@ -1371,7 +1371,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     -x DELETE https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
 Sample response:
@@ -1382,7 +1382,7 @@ Status: 200 OK
 
  #### Add identity
 
-`POST  /api/v3/contacts/{contactId}/identities`
+`POST  /api/v3/global/contacts/{contactId}/identities`
 
 - Path Parameters
 
@@ -1408,7 +1408,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"type": 'smsNumber', "value": '123456789'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities
+     https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities
 ```
 
 Sample response:
@@ -1423,7 +1423,7 @@ Sample response:
 
  #### Update identity
 
-`PUT  /api/v3/contacts/{contactId}/identities/{id}`
+`PUT  /api/v3/global/contacts/{contactId}/identities/{id}`
 
 - Path Parameters
 
@@ -1450,7 +1450,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"value": '987654321'}"    
-     https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
+     https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
 ```
 
 Sample response:
@@ -1465,7 +1465,7 @@ Sample response:
 
  #### Delete identity
 
- `DELETE  /api/v3/contacts/{contactId}/identities/{id}`
+ `DELETE  /api/v3/global/contacts/{contactId}/identities/{id}`
 
 - Path Parameters
 
@@ -1485,7 +1485,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
+     -x DELETE https://hosted.comm100.com/api/v3/global/contacts/87EDE98E-9B70-42DC-90A8-1C0FF38775B0/identities/18266526-49F7-4DB3-937A-CE9902E90BA3
 ```
 
 Sample response:
@@ -1502,13 +1502,13 @@ Status: 200 OK
 ## Roles
 
   You need `Manage Agent & Agent Roles` permission to manage roles.
-- `GET /api/v3/roles` - Get a list of roles
-- `GET /api/v3/roles/{id}` - Get a single roles
-- `POST /api/v3/roles` - Create a new role
-- `PUT /api/v3/roles/{id}` - Update a role
-- `DELETE /api/v3/roles/{id}` - Remove a role
-- `GET /api/v3/roles/{id}/permissions` - Get a role's permissions.
-- `PUT /api/v3/roles/{id}/permissions` - Update permissions for a role.
+- `GET /api/v3/global/roles` - Get a list of roles
+- `GET /api/v3/global/roles/{id}` - Get a single roles
+- `POST /api/v3/global/roles` - Create a new role
+- `PUT /api/v3/global/roles/{id}` - Update a role
+- `DELETE /api/v3/global/roles/{id}` - Remove a role
+- `GET /api/v3/global/roles/{id}/permissions` - Get a role's permissions.
+- `PUT /api/v3/global/roles/{id}/permissions` - Update permissions for a role.
 
 <div>
 
@@ -1533,7 +1533,7 @@ Status: 200 OK
 
 #### Get list of Roles
 
-  `GET /api/v3/roles`
+  `GET /api/v3/global/roles`
 
 - Parameters
   
@@ -1552,7 +1552,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/roles
+     https://hosted.comm100.com/api/v3/global/roles
 ```
 
   Sample response:
@@ -1598,7 +1598,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a single Role
 
-  `GET /api/v3/roles/{id}`
+  `GET /api/v3/global/roles/{id}`
 
 - Path Parameters:
 
@@ -1617,7 +1617,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/roles/4FCE64E9-615C-4036-B8EF-07D3B8AF7F42
+     https://hosted.comm100.com/api/v3/global/roles/4FCE64E9-615C-4036-B8EF-07D3B8AF7F42
 ```
 
   Sample response:
@@ -1644,7 +1644,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Create a new Role
   
-  `POST /api/v3/roles`
+  `POST /api/v3/global/roles`
 
 - Request Parameters
   
@@ -1665,7 +1665,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x POST -H "Content-Type: application/json"  
      -d "{"name": 'testaddname'}"    
-     https://hosted.comm100.com/api/v3/roles
+     https://hosted.comm100.com/api/v3/global/roles
 ```
 
   Sample response:
@@ -1682,7 +1682,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update a Role
 
-  `PUT /api/v3/roles/{id}`
+  `PUT /api/v3/global/roles/{id}`
 
 - Request Parameters
   
@@ -1703,7 +1703,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"name": 'testchangename'}"    
-     https://hosted.comm100.com/api/v3/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
+     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
 ```
 
   Sample response:
@@ -1720,7 +1720,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Remove a Role
 
-  `DELETE /api/v3/roles/{id}`
+  `DELETE /api/v3/global/roles/{id}`
 
 - Path Parameters
   
@@ -1739,7 +1739,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE  https://hosted.comm100.com/api/v3/roles/55CE64E9-615C-4036-B8EF-07D3B8AF7F42
+     -x DELETE  https://hosted.comm100.com/api/v3/global/roles/55CE64E9-615C-4036-B8EF-07D3B8AF7F42
 ```
 
   Sample response:
@@ -1750,7 +1750,7 @@ Status: 200 OK
 
 #### Get a Role's Permissions
 
-  `GET /api/v3/roles/{id}/permissions`
+  `GET /api/v3/global/roles/{id}/permissions`
 
 - Path Parameters:
 
@@ -1769,7 +1769,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
+     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
 ```
 
   Sample response:
@@ -1857,7 +1857,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update Permissions for a Role
 
-  `PUT /api/v3/roles/{id}/permissions`
+  `PUT /api/v3/global/roles/{id}/permissions`
 
 - Path Parameters:
 
@@ -1887,7 +1887,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
       "refuseChats": false,"inviteVisitorsToChat": false,"joinChats": true,"transferChats": true,
       "monitorAllChats": false,"monitorChatsInMyDepartment": false,"captureVisitor": false,
       "manageCustomMetrics": false,"viewAllInSiteVisitors": true,"viewAllAgents": true}}" 
-     https://hosted.comm100.com/api/v3/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
+     https://hosted.comm100.com/api/v3/global/roles/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42/permissions
 ```
 
   Sample response:
@@ -1980,8 +1980,8 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Agent SSO Settings
 
   You need `Manage Security` permission to manage agent sso settings.
-- `GET /api/v3/agentSignleSignOn` - Get configuration of agent sso settings
-- `PUT /api/v3/agentSignleSignOn` - Update configuration of agent sso settings
+- `GET /api/v3/global/agentSignleSignOn` - Get configuration of agent sso settings
+- `PUT /api/v3/global/agentSignleSignOn` - Update configuration of agent sso settings
 
 <div>
 
@@ -2009,7 +2009,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get configuration of agent sso settings
 
-  `Get /api/v3/agentSignleSignOn`
+  `Get /api/v3/global/agentSignleSignOn`
 
 - Parameters
   
@@ -2028,7 +2028,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/agentSignleSignOn
+     https://hosted.comm100.com/api/v3/global/agentSignleSignOn
 ```
 
   Sample response:
@@ -2048,7 +2048,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update configuration of agent sso settings
 
-  `PUT /api/v3/agentSignleSignOn`
+  `PUT /api/v3/global/agentSignleSignOn`
 
 - Request Parameters
   
@@ -2073,7 +2073,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
     "certificateName": "test.cer","jwtRemoteLoginUrl": "https://integration.comm100.com/jwt/accounts/login",
     "jwtRemoteLogoutUrl": "https://integration.comm100.com/jwt/home/logout",
     "sharedSecret": "NTamMDM5NzctOTayMys0Y2RjLWEwNTUdOTJibWRjszY5OGE1"}"    
-     https://hosted.comm100.com/api/v3/agentSignleSignOn
+     https://hosted.comm100.com/api/v3/global/agentSignleSignOn
 ```
 
   Sample response:
@@ -2099,7 +2099,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
   You need `View Audit Log` permission to view audit logs.
 
-- `Get /api/v3/auditLogs` - Get audit Logs list.
+- `Get /api/v3/global/auditLogs` - Get audit Logs list.
 
 <div>
 
@@ -2125,7 +2125,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get audit Logs list
 
-  `Get /api/v3/auditLogs`
+  `Get /api/v3/global/auditLogs`
 
 - Query Parameters
   - `dateFrom`: datetime, the date from which agent did the action, format as `yyyy-MM-ddTHH:mm:ss`.
@@ -2153,7 +2153,7 @@ curl -H "Authorization: Bearer XCUScuZK21qDa2Tqyo0HF1rvoHC6OTIKZRkj-GgKUcsVyaXyh
         74KX9xXrDTA3QR4XCXcaslq7a17ubllUwRRoMqt-cxYETrb5WFjOv4GRvM8nRO5H5nangeGJMHgJczhyiu7897kYvdlRHO 
         udnoYbkwBPNMKUzQN9hiRNtZi8eV3Faf8OZYSWGxFZPvWcNHqY78WGXwnYww_UNB1HzME7UKcvY1Auxhdq_ZR-UncaiNoM 
         46OBYYbU5nNXbKDFPAA"   
-     https://hosted.comm100.com/api/v3/auditlogs?datefrom=2018-07-17&dateto=2018-08-08
+     https://hosted.comm100.com/api/v3/global/auditlogs?datefrom=2018-07-17&dateto=2018-08-08
 ```
 
   Sample response:
@@ -2185,11 +2185,11 @@ curl -H "Authorization: Bearer XCUScuZK21qDa2Tqyo0HF1rvoHC6OTIKZRkj-GgKUcsVyaXyh
 
   You need `Manage Pulbic Canned Messages` permission to manage canned message.
 
-- `GET /api/v3/cannedMessages` -get a list of canned Messages
-- `GET /api/v3/cannedMessages/{id}`  -get a single canned Message
-- `POST /api/v3/cannedMessages` -create a new canned Message
-- `PUT /api/v3/cannedMessages/{id}`  -update a canned Message
-- `DELETE /api/v3/cannedMessages/{id}`  -remove a canned Message
+- `GET /api/v3/global/cannedMessages` -get a list of canned Messages
+- `GET /api/v3/global/cannedMessages/{id}`  -get a single canned Message
+- `POST /api/v3/global/cannedMessages` -create a new canned Message
+- `PUT /api/v3/global/cannedMessages/{id}`  -update a canned Message
+- `DELETE /api/v3/global/cannedMessages/{id}`  -remove a canned Message
 
 <div>
 
@@ -2218,7 +2218,7 @@ curl -H "Authorization: Bearer XCUScuZK21qDa2Tqyo0HF1rvoHC6OTIKZRkj-GgKUcsVyaXyh
 
 #### Get list of canned messages
 
-  `GET /api/v3/cannedMessages`
+  `GET /api/v3/global/cannedMessages`
 
 - Parameters:
 
@@ -2237,7 +2237,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/cannedMessages
+     https://hosted.comm100.com/api/v3/global/cannedMessages
 ```
 
 Sample response:
@@ -2261,7 +2261,7 @@ Sample response:
 
 #### Get a single canned message
 
-  `GET /api/v3/cannedMessages/{id}`
+  `GET /api/v3/global/cannedMessages/{id}`
 
 - Parameters:
 
@@ -2280,7 +2280,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/cannedmessages/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
+     https://hosted.comm100.com/api/v3/global/cannedmessages/3FCE64E9-615C-4036-B8EF-07D3B8AF7F42
 ```
 
 Sample response:
@@ -2301,7 +2301,7 @@ Sample response:
 
 #### Create a new canned message
 
-  `POST /api/v3/cannedMessages`
+  `POST /api/v3/global/cannedMessages`
 
 - Request Parameters:
 
@@ -2322,7 +2322,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"isprivate": false,"name": 'test',"message": 'testmessage',"channelType": 'default',"emailHtmlMessage": '',"emailTextMessage": ''}"   
-     https://hosted.comm100.com/api/v3/cannedmessages
+     https://hosted.comm100.com/api/v3/global/cannedmessages
 ```
 
 Sample response:
@@ -2343,7 +2343,7 @@ Sample response:
 
 #### Update a canned message
 
-  `PUT /api/v3/cannedMessages/{id}`
+  `PUT /api/v3/global/cannedMessages/{id}`
 
 - Path Parameters:
 
@@ -2368,7 +2368,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"isprivate": false,"name": 'testupdate',"message": 'testmessageupdate',"channelType": 'email',"emailHtmlMessage": 'test email html message',"emailTextMessage": 'test email text message'}"   
-     https://hosted.comm100.com/api/v3/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
+     https://hosted.comm100.com/api/v3/global/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
 ```
 
 Sample response:
@@ -2389,7 +2389,7 @@ Sample response:
 
 #### Remove a canned message
 
-  `DELETE /api/v3/cannedMessages/{id}`
+  `DELETE /api/v3/global/cannedMessages/{id}`
 
 - Path Parameters:
 
@@ -2408,7 +2408,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
+     -x DELETE  https://hosted.comm100.com/api/v3/global/cannedmessages/217F8029-DCAC-4CFA-9859-DAA4C0410B4A
 ```
 
 Sample response:
@@ -2424,11 +2424,11 @@ Status: 200 OK
 ## Canned Message Categories
 
   You need `Manage Pulbic Canned Messages` permission to manage canned message category.
-- `GET /api/v3/cannedMessageCategories` -get a list of canned Messages Categories
-- `GET /api/v3/cannedMessageCategories/{id}`  -get a single canned Messages Category
-- `POST /api/v3/cannedMessageCategories` -create a new canned Messages Category
-- `PUT /api/v3/cannedMessageCategories/{id}`  -update a canned Messages Category
-- `DELETE /api/v3/cannedMessageCategories/{id}`  -remove a canned Messages Category
+- `GET /api/v3/global/cannedMessageCategories` -get a list of canned Messages Categories
+- `GET /api/v3/global/cannedMessageCategories/{id}`  -get a single canned Messages Category
+- `POST /api/v3/global/cannedMessageCategories` -create a new canned Messages Category
+- `PUT /api/v3/global/cannedMessageCategories/{id}`  -update a canned Messages Category
+- `DELETE /api/v3/global/cannedMessageCategories/{id}`  -remove a canned Messages Category
 
 <div>
 
@@ -2452,7 +2452,7 @@ Status: 200 OK
 
 #### Get list of canned message categories
 
-  `GET /api/v3/cannedMessageCategories`
+  `GET /api/v3/global/cannedMessageCategories`
 
 - Parameters:
 
@@ -2471,7 +2471,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/cannedmessagecategories
+     https://hosted.comm100.com/api/v3/global/cannedmessagecategories
 ```
 
 Sample response:
@@ -2490,7 +2490,7 @@ Sample response:
 
 #### Get a single canned message category
 
-  `GET /api/v3/cannedMessageCategories/{id}`
+  `GET /api/v3/global/cannedMessageCategories/{id}`
 
 - Path Parameters:
 
@@ -2509,7 +2509,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/cannedmessagecategories/7F79B926-1E8C-438B-8F07-53D2914149A6
+     https://hosted.comm100.com/api/v3/global/cannedmessagecategories/7F79B926-1E8C-438B-8F07-53D2914149A6
 ```
 
 Sample response:
@@ -2525,7 +2525,7 @@ Sample response:
 
 #### Create a new canned message category
 
-  `POST /api/v3/cannedMessageCategories`
+  `POST /api/v3/global/cannedMessageCategories`
 
 - Request Parameters:
 
@@ -2546,7 +2546,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"isprivate": false,"name": 'justfortest',"parentid": '0'}"    
-     https://hosted.comm100.com/api/v3/cannedmessagecategories
+     https://hosted.comm100.com/api/v3/global/cannedmessagecategories
 ```
 
 Sample response:
@@ -2562,7 +2562,7 @@ Sample response:
 
 #### Update a canned message category
 
-  `PUT /api/v3/cannedMessageCategories/{id}`
+  `PUT /api/v3/global/cannedMessageCategories/{id}`
 
 - Path Parameters:
 
@@ -2587,7 +2587,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"isprivate": false,"name": 'justfortestupdate',"parentid": '0'}"    
-     https://hosted.comm100.com/api/v3/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     https://hosted.comm100.com/api/v3/global/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
 Sample response:
@@ -2603,7 +2603,7 @@ Sample response:
 
 #### Remove a canned message category
 
-  `DELETE /api/v3/cannedMessageCategories/{id}`
+  `DELETE /api/v3/global/cannedMessageCategories/{id}`
 
 - Path Parameters:
 
@@ -2622,7 +2622,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE https://hosted.comm100.com/api/v3/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
+     -x DELETE https://hosted.comm100.com/api/v3/global/cannedmessagecategories/87EDE98E-9B70-42DC-90A8-1C0FF38775B0
 ```
 
 Sample response:
@@ -2638,7 +2638,7 @@ Status: 200 OK
 
 ## Canned Message Use Records
 
-- `POST /api/v3/cannedMessageUseRecords` -create a new canned Message Use Record
+- `POST /api/v3/global/cannedMessageUseRecords` -create a new canned Message Use Record
 
 <div>
 
@@ -2664,7 +2664,7 @@ Status: 200 OK
 
 #### Create a new canned message
 
-  `POST /api/v3/cannedMessageUseRecords`
+  `POST /api/v3/global/cannedMessageUseRecords`
 
 - Request Parameters:
 
@@ -2685,7 +2685,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"siteId": 10000,"conversationId": '4ACE64E9-615C-4036-B8EF-07D3B8AF7F42',"conversationType": 'anytime',"agentId": '909F7DCE-778E-4FA6-8B1F-4B529023747B',"cannedMessageId": '7960F944-D510-45C9-A766-836337243487'}"   
-     https://hosted.comm100.com/api/v3/cannedMessageUseRecords
+     https://hosted.comm100.com/api/v3/global/cannedMessageUseRecords
 ```
 
 Sample response:
@@ -2710,8 +2710,8 @@ Sample response:
 ## Credit Card Masking
 
   You need `Manage Credit Card Masking` permission to manage credit card masking.
-- `GET /api/v3/creditcardMasking` - Get configuration of credit card masking
-- `PUT /api/v3/creditcardMasking` - Update configuration of credit card masking
+- `GET /api/v3/global/creditcardMasking` - Get configuration of credit card masking
+- `PUT /api/v3/global/creditcardMasking` - Update configuration of credit card masking
 
 <div>
 
@@ -2732,7 +2732,7 @@ Sample response:
 
 #### Get configuration of credit card masking
 
-  `Get /api/v3/creditcardMasking`
+  `Get /api/v3/global/creditcardMasking`
 
 - Parameters
   
@@ -2751,7 +2751,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/creditcardMasking
+     https://hosted.comm100.com/api/v3/global/creditcardMasking
 ```
 
   Sample response:
@@ -2764,7 +2764,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update configuration of credit card masking
 
-  `PUT /api/v3/creditcardMasking`
+  `PUT /api/v3/global/creditcardMasking`
 
 - Request Parameters:
 
@@ -2785,7 +2785,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -H "content-type: application/json" -x PUT  
      -d "{"isEnable": 'true'}"    
-     https://hosted.comm100.com/api/v3/creditcardMasking
+     https://hosted.comm100.com/api/v3/global/creditcardMasking
 ```
 
   Sample response:
@@ -2803,11 +2803,11 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Departments
 
   You need `Manage Departments` permission to manage department.
-- `GET /api/v3/departments` -get a list of departments
-- `GET /api/v3/departments/{id}`  -get a single department
-- `POST /api/v3/departments` -create a new department
-- `PUT /api/v3/departments/{id}`  -update a department
-- `DELETE /api/v3/departments/{id}`  -remove a department
+- `GET /api/v3/global/departments` -get a list of departments
+- `GET /api/v3/global/departments/{id}`  -get a single department
+- `POST /api/v3/global/departments` -create a new department
+- `PUT /api/v3/global/departments/{id}`  -update a department
+- `DELETE /api/v3/global/departments/{id}`  -remove a department
 
 <div>
 
@@ -2833,7 +2833,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get list of departments
 
-  `GET /api/v3/departments`
+  `GET /api/v3/global/departments`
 
 - Parameters:
 
@@ -2852,7 +2852,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/departments
+     https://hosted.comm100.com/api/v3/global/departments
 ```
 
 Sample response:
@@ -2875,7 +2875,7 @@ Sample response:
 
 #### Get a single department
 
-  `GET /api/v3/departments/{id}`
+  `GET /api/v3/global/departments/{id}`
 
 - Path Parameters:
 
@@ -2894,7 +2894,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/departments/0399B614-F4E9-42A0-B0DA-8C9422D7121A
+     https://hosted.comm100.com/api/v3/global/departments/0399B614-F4E9-42A0-B0DA-8C9422D7121A
 ```
 
 Sample response:
@@ -2914,7 +2914,7 @@ Sample response:
 
 #### Create a new department
 
-  `POST /api/v3/departments`
+  `POST /api/v3/global/departments`
 
 - Request Parameters:
 
@@ -2935,7 +2935,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"name": 'test'}"    
-     https://hosted.comm100.com/api/v3/departments
+     https://hosted.comm100.com/api/v3/global/departments
 ```
 
 Sample response:
@@ -2953,7 +2953,7 @@ Sample response:
 
 #### Update a department
 
-  `PUT /api/v3/departments/{id}`
+  `PUT /api/v3/global/departments/{id}`
 
 - Path Parameters:
 
@@ -2978,7 +2978,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"name": 'testupdate'}"    
-     https://hosted.comm100.com/api/v3/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
+     https://hosted.comm100.com/api/v3/global/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
 ```
 
 Sample response:
@@ -2996,7 +2996,7 @@ Sample response:
 
 #### Remove a department
 
-  `DELETE /api/v3/departments/{id}`
+  `DELETE /api/v3/global/departments/{id}`
 
 - Path Parameters:
 
@@ -3015,7 +3015,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
+     -x DELETE  https://hosted.comm100.com/api/v3/global/departments/BBEBE689-0993-461A-A820-C6D30FD3C66F
 ```
 
 Sample response:
@@ -3031,12 +3031,12 @@ Status: 200 OK
 ## IP Restriction
 
   You need `Manage Security` permission to manage ip restrictions.
-- `GET /api/v3/ipRestriction` - Get configuration of ip restrictions
-- `PUT /api/v3/ipRestriction` - Update configuration of ip restrictions
-- `GET /api/v3/ipRestriction/ipRanges` - Get authorized ip range list for ip restrictions
-- `PUT /api/v3/ipRestriction/ipRanges/{id}` - Update an authorized ip range
-- `POST /api/v3/ipRestriction/ipRanges/{id}` - Create a new ip range for ip restriction
-- `DELETE /api/v3/ipRestriction/ipRanges/{id}` - Remove an ip range for ip restriction
+- `GET /api/v3/global/ipRestriction` - Get configuration of ip restrictions
+- `PUT /api/v3/global/ipRestriction` - Update configuration of ip restrictions
+- `GET /api/v3/global/ipRestriction/ipRanges` - Get authorized ip range list for ip restrictions
+- `PUT /api/v3/global/ipRestriction/ipRanges/{id}` - Update an authorized ip range
+- `POST /api/v3/global/ipRestriction/ipRanges/{id}` - Create a new ip range for ip restriction
+- `DELETE /api/v3/global/ipRestriction/ipRanges/{id}` - Remove an ip range for ip restriction
 
 <div>
 
@@ -3058,7 +3058,7 @@ Status: 200 OK
 
 #### Get configuration of ip restriction
 
-  `Get /api/v3/ipRestriction`
+  `Get /api/v3/global/ipRestriction`
 
 - Parameters
   
@@ -3077,7 +3077,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/iprestriction
+     https://hosted.comm100.com/api/v3/global/iprestriction
 ```
 
   Sample response:
@@ -3091,7 +3091,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update configuration of ip restriction
 
-  `PUT /api/v3/ipRestriction`
+  `PUT /api/v3/global/ipRestriction`
 
 - Parameters
   
@@ -3112,7 +3112,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -H "content-type: application/json" -x PUT  
      -d "{"isEnable":false,"isEnableForMobile":false}"    
-     https://hosted.comm100.com/api/v3/iprestriction
+     https://hosted.comm100.com/api/v3/global/iprestriction
 ```
 
   Sample response:
@@ -3136,7 +3136,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get ip range list of ip restriction
   
-  `Get /api/v3/ipRestriction/ipRanges`
+  `Get /api/v3/global/ipRestriction/ipRanges`
 
 - Parameters
 
@@ -3155,7 +3155,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/iprestriction/ipranges
+     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges
 ```
 
   Sample response:
@@ -3173,7 +3173,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Create a new ip range for ip restrictions
 
-  `POST /api/v3/ipRestriction/ipRanges`
+  `POST /api/v3/global/ipRestriction/ipRanges`
 
 - Request Parameters
 
@@ -3194,7 +3194,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x POST -H "Content-Type: application/json"  
      -d "{"from": '192.168.1.3',"to": '192.168.1.4'}"    
-     https://hosted.comm100.com/api/v3/iprestriction/ipranges
+     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges
 ```
 
   Sample response:
@@ -3208,7 +3208,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ```
 #### Update ip range for ip restriction
 
-  `PUT /api/v3/ipRestriction/ipRanges/{id}`
+  `PUT /api/v3/global/ipRestriction/ipRanges/{id}`
 
 - Path Parameters
 
@@ -3233,7 +3233,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -H "content-type: application/json" -x PUT  
      -d "{"from": '192.168.1.4',"to": '192.168.1.5'}"    
-     https://hosted.comm100.com/api/v3/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
+     https://hosted.comm100.com/api/v3/global/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
 ```
 
   Sample response:
@@ -3248,7 +3248,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Remove a ip range for ip restriction
 
-  `DELETE /api/v3/ipRestriction/ipRanges/{id}`
+  `DELETE /api/v3/global/ipRestriction/ipRanges/{id}`
 
 - Path Parameters
 
@@ -3267,7 +3267,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
+     -x DELETE https://hosted.comm100.com/api/v3/global/iprestriction/ipranges/62BB51E9-BF58-4AAE-AFCE-CE33504B8A17
 ```
 
   Sample response:
@@ -3284,8 +3284,8 @@ Status: 200 OK
 ## Password Policy
 
   You need `Manage Security` permission to manage password policy.
-- `GET /api/v3/passwordPolicy` - Get configuration of password policy
-- `PUT /api/v3/passwordPolicy` - Update configuration of password policy
+- `GET /api/v3/global/passwordPolicy` - Get configuration of password policy
+- `PUT /api/v3/global/passwordPolicy` - Update configuration of password policy
 
 <div>
 
@@ -3318,7 +3318,7 @@ Status: 200 OK
 
 #### Get configuration of password policy
 
-  `Get /api/v3/passwordPolicy`
+  `Get /api/v3/global/passwordPolicy`
 
 - Parameters
   
@@ -3337,7 +3337,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/passwordPolicy
+     https://hosted.comm100.com/api/v3/global/passwordPolicy
 ```
 
   Sample response:
@@ -3362,7 +3362,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Update configuration of password policy
 
-  `PUT /api/v3/passwordPolicy`
+  `PUT /api/v3/global/passwordPolicy`
 
 - Request Parameters
   
@@ -3383,7 +3383,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -H "content-type: application/json" -x PUT  
      -d "{"isVerifyPasswordMinimumLength": true,"minimumPasswordLength": 16}"    
-     https://hosted.comm100.com/api/v3/passwordPolicy
+     https://hosted.comm100.com/api/v3/global/passwordPolicy
 ```
 
   Sample response:
@@ -3415,11 +3415,11 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 ## Tag
 
 - You need `Manage Tags` permission to manage tags.
-  - `GET /api/v3/tags` - Search tags
-  - `GET /api/v3/tags/{id}` - Get a tag by tag id
-  - `PUT /api/v3/tags/{id}` - Update a tag
-  - `POST /api/v3/tags` - Create a tag
-  - `DELETE /api/v3/tags/{id}` - Remove a tag
+  - `GET /api/v3/global/tags` - Search tags
+  - `GET /api/v3/global/tags/{id}` - Get a tag by tag id
+  - `PUT /api/v3/global/tags/{id}` - Update a tag
+  - `POST /api/v3/global/tags` - Create a tag
+  - `DELETE /api/v3/global/tags/{id}` - Remove a tag
 
 <div>
 
@@ -3441,7 +3441,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
  #### Get tags
 
-- `GET  /api/v3/tags`
+- `GET  /api/v3/global/tags`
 
 - Parameters
 
@@ -3460,7 +3460,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ  
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-  
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"   
-     https://hosted.comm100.com/api/v3/tags
+     https://hosted.comm100.com/api/v3/global/tags
 ```
 
   Sample response:
@@ -3480,7 +3480,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
 #### Get a tag by tag id
 
-`GET  /api/v3/tags/{id}`
+`GET  /api/v3/global/tags/{id}`
 
 - Path Parameters
 
@@ -3499,7 +3499,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/tags/954609B-7D93-43F0-83AA-E29347BB947D
+     https://hosted.comm100.com/api/v3/global/tags/954609B-7D93-43F0-83AA-E29347BB947D
 ```
 
 Sample response:
@@ -3513,7 +3513,7 @@ Sample response:
 
  #### Create a tag
 
-`POST  /api/v3/tags`
+`POST  /api/v3/global/tags`
 
 - Request Parameters
 
@@ -3526,7 +3526,7 @@ Sample response:
 
  #### Update a tag
 
-`PUT  /api/v3/tag/{id}`
+`PUT  /api/v3/global/tag/{id}`
 
 - Path Parameters
 
@@ -3551,7 +3551,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"name": 'test update tag'}"
-     https://hosted.comm100.com/api/v3/tags/954609B-7D93-43F0-83AA-E29347BB947D
+     https://hosted.comm100.com/api/v3/global/tags/954609B-7D93-43F0-83AA-E29347BB947D
 ```
 
   Sample response:
@@ -3565,7 +3565,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
 
  #### Delete a tag
 
- `DELETE  /api/v3/tags/{id}`
+ `DELETE  /api/v3/global/tags/{id}`
 
 - Path Parameters
 
@@ -3584,7 +3584,7 @@ curl -H "Authorization: Bearer yHShF0rEGY0BcO9TvsjxVRygYl_Ad7-eO3YZ4L1jIrRXUa-_I
         gjvJsYjLlo3i0h_nMmlAeD0eFrW18uFABigYk21hm4n95eEhaWqi6gIiPFddWkoVJTX_jkK_g5me9zwP_RJ
         SunV7okaqciXPRozb2ita6MjS0b7Vrxcy1_ufHNzOjzaUH7AvOmqtL6zMCuBlPcLeDNG3S74Ui5F2npOyg-
         j0MdIrtfq8gjqMqwywSJc8Kk8gtXGFzZKDK6qdHzT8TeojT9-M4A"  
-     -x DELETE https://hosted.comm100.com/api/v3/tags/843D009B-7D93-43F0-83AA-E29347BB947D
+     -x DELETE https://hosted.comm100.com/api/v3/global/tags/843D009B-7D93-43F0-83AA-E29347BB947D
 ```
 
   Sample response:
@@ -3599,10 +3599,10 @@ Status: 200 OK
 
 ## Webhooks
 
-- `GET /api/v3/webhooks` - Get a list of webhooks
-- `POST /api/v3/webhooks` - Create a new webhook
-- `PUT /api/v3/webhooks/{id}` - Update a webhook
-- `DELETE /api/v3/webhooks/{id}`  - Remove a webhook
+- `GET /api/v3/global/webhooks` - Get a list of webhooks
+- `POST /api/v3/global/webhooks` - Create a new webhook
+- `PUT /api/v3/global/webhooks/{id}` - Update a webhook
+- `DELETE /api/v3/global/webhooks/{id}`  - Remove a webhook
 
 <div>
 
@@ -3626,7 +3626,7 @@ Webhook is represented as simple flat JSON objects with the following keys:
 
 #### Get list of webhooks
 
-  `GET /api/v3/webhooks`
+  `GET /api/v3/global/webhooks`
 
 - Parameters:
 
@@ -3645,7 +3645,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"   
-     https://hosted.comm100.com/api/v3/webhooks
+     https://hosted.comm100.com/api/v3/global/webhooks
 ```
 
 Sample response:
@@ -3664,7 +3664,7 @@ Sample response:
 
 #### Create a new webhook
 
-  `POST /api/v3/webhooks`
+  `POST /api/v3/global/webhooks`
 
 - Request Parameters:
 
@@ -3685,7 +3685,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x POST -H "Content-Type: application/json"  
      -d "{"event": 'chatwrappedup',"targeturl": 'http://www.baidu.com'}"    
-     https://hosted.comm100.com/api/v3/webhooks
+     https://hosted.comm100.com/api/v3/global/webhooks
 ```
 
 Sample response:
@@ -3701,7 +3701,7 @@ Sample response:
 
 #### Update a webhook
 
-  `PUT /api/v3/webhooks/{id}`
+  `PUT /api/v3/global/webhooks/{id}`
 
 - Path parameters:
 
@@ -3726,7 +3726,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
      -x PUT -H "Content-Type: application/json"  
      -d "{"event": 'chatwrappedup',"targeturl": 'http://www.google.com'}"    
-     https://hosted.comm100.com/api/v3/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
+     https://hosted.comm100.com/api/v3/global/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
 ```
 
 Sample response:
@@ -3742,7 +3742,7 @@ Sample response:
 
 #### Remove a webhook
 
-  `DELETE /api/v3/webhooks/{id}`
+  `DELETE /api/v3/global/webhooks/{id}`
 
 - Path Parameters:
 
@@ -3761,7 +3761,7 @@ curl -H "Authorization: Bearer jRhriWa2_yX-z1Y5ABCytDz3CrSBbCK155hRCw85FHTaYzTG9
     -aM-jE_GaqwzEXNzbk_IJw2RgFcrqpSHiSnolFgij80g_tU6f1Tmr6LDCj-puxRgceKMCIlC1PibtzxY2A_BRb  
     fmGPgS0xO6BkGa_TFv2jRVzz-e50P6OaTA05BkaBuEqWVi7FEtqqg33_-kHrMFaiP3HmPumTyB6gqDzDopLn1x  
     UTdSzWolvAD0lL6WYLU_hszD_K-qhJa_xnMKpOnLLEm22kQ"  
-     -x DELETE  https://hosted.comm100.com/api/v3/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
+     -x DELETE  https://hosted.comm100.com/api/v3/global/webhooks/36E4A18F-3AE7-4192-BCF4-CB5CA6320908
 ```
 
 Sample response:
